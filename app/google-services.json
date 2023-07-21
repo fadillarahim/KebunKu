@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "307105152358",
+    "project_id": "marketplacepertanian-bf03f",
+    "storage_bucket": "marketplacepertanian-bf03f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:307105152358:android:1650353e5478b3fc78dca7",
+        "android_client_info": {
+          "package_name": "com.example.marketplacepertanian"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "307105152358-o4b34oo6nvhsaq5977b896l2v9467plp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtqPoTwUDJRYZNnDjD9gsgBzGtVXuKbXo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "307105152358-o4b34oo6nvhsaq5977b896l2v9467plp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
