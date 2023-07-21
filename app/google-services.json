@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "709578331186",
+    "project_id": "kebunku-c99dc",
+    "storage_bucket": "kebunku-c99dc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:709578331186:android:31b85e208ebaad2638182b",
+        "android_client_info": {
+          "package_name": "com.tugas.kebunku"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "709578331186-u9ooiikral1mqngk38fljkbpf1lg0lmn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChIa9j-gs94Eniv128GYkWmbWVGz22zV4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "709578331186-u9ooiikral1mqngk38fljkbpf1lg0lmn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
