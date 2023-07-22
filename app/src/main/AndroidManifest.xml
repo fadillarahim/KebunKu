@@ -12,6 +12,12 @@
         android:theme="@style/Theme.KebunKu"
         tools:targetApi="31">
         <activity
+            android:name=".AddProdukActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditProdukActivity"
+            android:exported="false" />
+        <activity
             android:name=".auth.SignUpActivity"
             android:exported="false" />
         <activity
@@ -25,9 +31,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="false">
-
-        </activity>
+            android:exported="false" />
     </application>
 
 </manifest>

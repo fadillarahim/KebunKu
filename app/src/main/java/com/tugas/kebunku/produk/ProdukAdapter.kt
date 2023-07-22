@@ -1,5 +1,8 @@
 package com.tugas.kebunku.produk
 
+import android.content.Intent
+import android.graphics.BitmapFactory
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.menu.MenuView.ItemView
 import androidx.recyclerview.widget.RecyclerView
 import com.tugas.kebunku.R
+import com.google.firebase.storage.FirebaseStorage
+import java.io.File
 
 class ProdukAdapter(private val produkList:ArrayList<Produk>) : RecyclerView.Adapter<ProdukAdapter.ProdukViewHolder>(){
 
@@ -30,6 +35,33 @@ class ProdukAdapter(private val produkList:ArrayList<Produk>) : RecyclerView.Ada
         val produk:Produk = produkList[position]
         holder.nama_produk.text = produk.nama_produk
         holder.stok.text = produk.stok
-        
+        holder.harga.text = produk.harga
+
+        holder.itemView.setOnClickListener{
+            activity = it.context as AppCompatActivity
+            activity.startActivity(Intent(activity, EditProdukActivity::class.java).apply {
+                putExtra("nama_produk", produk.nama_produk.toString())
+                putExtra("berat", produk.berat.toString())
+                putExtra("harga", produk.harga.toString())
+                putExtra("stok", produk.stok.toString())
+                putExtra("deskripsi", produk.deskripsi.toString())
+            })
+        }
+
+        val storageRef = FirebaseStorage.getInstance().reference.child(
+            "img_produk/${produk.nama_produk}}.jpg"
+        )
+
+        val localFile = File.createTempFile("tempImage", "jpg")
+        storageRef.getFile(localFile).addOnSuccessListener {
+            val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
+            holder.img_produk.setImageBitmap(bitmap)
+        }.addOnFailureListener{
+            Log.e("foto ?", "gagal")
+        }
+    }
+
+    override fun getItemCount(): Int {
+        return produkList.size
     }
 }
