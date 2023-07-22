@@ -26,6 +26,9 @@
         android:theme="@style/Theme.MarketplacePertanian"
         tools:targetApi="31">
         <activity
+            android:name="com.example.marketplacepertanian.productsold.AddProductSoldActivity"
+            android:exported="false" />
+        <activity
             android:name="com.example.marketplacepertanian.productsold.ProductSoldActivity"
             android:exported="false" />
         <activity
