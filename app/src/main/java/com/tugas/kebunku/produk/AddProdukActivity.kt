@@ -71,7 +71,7 @@ class AddProdukActivity : AppCompatActivity() {
 
     private fun uploadPictFirebase(img_bitmap: Bitmap, file_name: String) {
         val baos = ByteArrayOutputStream()
-        val ref = FirebaseStorage.getInstance().reference.child("img_pasien/${file_name}.jpg")
+        val ref = FirebaseStorage.getInstance().reference.child("img_produk/${file_name}.jpg")
         img_bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
 
         val img = baos.toByteArray()

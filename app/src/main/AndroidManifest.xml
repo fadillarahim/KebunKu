@@ -12,6 +12,15 @@
         android:theme="@style/Theme.KebunKu"
         tools:targetApi="31">
         <activity
+            android:name=".ChatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PembelianActivity"
+            android:exported="false" />
+        <activity
             android:name=".AddProdukActivity"
             android:exported="false" />
         <activity
