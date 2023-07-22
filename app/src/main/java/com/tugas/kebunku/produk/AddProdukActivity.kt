@@ -58,6 +58,9 @@ class AddProdukActivity : AppCompatActivity() {
                     val intentMain = Intent(this, MainActivity::class.java)
                     startActivity(intentMain)
                 }
+        } else {
+            val intentMain = Intent(this, MainActivity::class.java)
+            startActivity(intentMain)
         }
     }
 
