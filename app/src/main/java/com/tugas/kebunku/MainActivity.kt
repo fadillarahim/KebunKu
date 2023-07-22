@@ -2,6 +2,7 @@ package com.tugas.kebunku
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.tugas.kebunku.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

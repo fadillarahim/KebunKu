@@ -1,12 +1,11 @@
-package com.tugas.kebunku
+package com.tugas.kebunku.auth
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.ktx.Firebase
+import com.tugas.kebunku.MainActivity
 import com.tugas.kebunku.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
@@ -35,7 +34,7 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
             } else {
-                Toast.makeText(this, "Fields cannot be empty", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Tidak Boleh Kosong", Toast.LENGTH_SHORT).show()
             }
         }
 

@@ -1,4 +1,4 @@
-package com.tugas.kebunku
+package com.tugas.kebunku.auth
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
