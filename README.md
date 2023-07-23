@@ -17,8 +17,10 @@ Aplikasi yang dibangun pada repository ini diperuntukkan dari sisi penggunaan ol
 Tools yang digunakan dalam pembuatan project ini adalah menggunakan Android Studio, dengan bahasa pemrograman Kotlin, Firebase Firestore, dan Firebase Database.
 
 ## User Guide
-1. Login 
+Login 
+
 ![Login](https://github.com/fadillarahim/KebunKu/assets/96510275/c635d65f-7aaa-414d-bb17-21fe530f1d07)
+
 ![Register](https://github.com/fadillarahim/KebunKu/assets/96510275/6223986a-bafe-40d6-8ed3-c94c30e6c257)
 
 Untuk mulai menjalankan aplikasi maka terlebih dahulu harus login, jika user belum mempunyai akun untuk login diarahkan untuk melakukan register agar dapat login dengan username dan password yang telah dibuat. 
