@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "244373503381",
+    "project_id": "kebunku-ca6b1",
+    "storage_bucket": "kebunku-ca6b1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:244373503381:android:f0c92fe86167d11ed88a9c",
+        "android_client_info": {
+          "package_name": "com.example.kebunku"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "244373503381-0oa8on4jj610aa8jum9giufk44vatu82.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6Syiw2dnRaZvwgY29V7NOjs5NLJLzcuU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "244373503381-0oa8on4jj610aa8jum9giufk44vatu82.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
