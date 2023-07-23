@@ -1,6 +1,5 @@
 # KebunKu
-KebunKu adalah Marketplace Pertanian dimana aplikasi produk-produk pertanian berbasis android dapat digunakan dalam menjual dan membeli produk pertanian. Aplikasi diharapkan dapat meningkatkan pemasaran produk pertanian dengan teknologi yang dapat menunjang jual beli secara real-time dan efisien.
-
+Marketplace Pertanian merupakan aplikasi produk-produk pertanian berbasis android yang  dapat digunakan dalam menjual dan membeli produk pertanian. Aplikasi diharapkan dapat meningkatkan pemasaran produk pertanian dengan teknologi yang dapat menunjang jual beli secara real-time dan efisien. Project marketplace pertanian berbasis android ini untuk membantu petani atau menjual produk pertanian meningkatkan akses pasar dan meningkatkan penjualan mereka. Disisi lain aplikasi ini juga memberikan kemudahan bagi pembeli atau konsumen untuk mendapatkan produk pertanian segar dan berkualitas dari para petani secara langsung, sehingga dapat mendukung pertumbuhan ekonomi di sektor pertanian. 
 ## Batasan Aplikasi
 Aplikasi yang dibangun pada repository ini diperuntukkan dari sisi penggunaan oleh Penjual. Sehingga fitur yang tersedia hanya terbatas sesuai dengan keperluan penjual saja.
 
