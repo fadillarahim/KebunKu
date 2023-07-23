@@ -57,10 +57,6 @@ class ProductSoldActivity : AppCompatActivity() {
 
         load_data()
 
-        binding.btnAddProduk.setOnClickListener {
-            val intentMain = Intent(this, AddProductSoldActivity::class.java)
-            startActivity(intentMain)
-        }
 
         swipeDelete()
         binding.txtSearchProduk.addTextChangedListener(object: TextWatcher {
