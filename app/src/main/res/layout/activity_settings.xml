@@ -25,7 +25,10 @@
             android:paddingTop="20dp"
             android:text="Username"
             android:textColor="@color/black"
-            android:textSize="18dp" />
+            android:textStyle="bold"
+            android:textSize="18dp"
+            style="@style/h2"
+            />
 
         <TextView
             android:layout_width="match_parent"
@@ -34,7 +37,8 @@
             android:paddingTop="20dp"
             android:text="Update Password :"
             android:textColor="@color/black"
-            android:textSize="18dp" />
+            android:textSize="18dp"
+            style="@style/h2"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -69,9 +73,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="5dp"
                 android:layout_weight="1"
-                android:backgroundTint="#A10B01"
+                android:backgroundTint="#4CAF50"
                 android:padding="18dp"
-                android:text="Ubah" />
+                android:text="Ubah"
+                android:textColor="@color/black"
+                style="@style/h2"/>
 
         </LinearLayout>
 
@@ -81,15 +87,18 @@
             android:paddingHorizontal="10dp"
             android:paddingTop="20dp"
             android:text="Log-out"
+            android:textStyle="bold"
             android:textColor="@color/black"
+            style="@style/h2"
             android:textSize="18dp" />
 
         <Button
+            style="@style/h2"
             android:id="@+id/btn_logout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="5dp"
-            android:backgroundTint="#F2BE22"
+            android:backgroundTint="@color/lavender"
             android:padding="18dp"
             android:text="Log Out"
             android:textColor="@color/black" />

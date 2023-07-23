@@ -104,16 +104,13 @@ class MainActivity : AppCompatActivity() {
         db = FirebaseFirestore.getInstance()
         db.collection("produk").
         addSnapshotListener(object : EventListener<QuerySnapshot> {
-            override fun onEvent(
-                value: QuerySnapshot?,
-                error: FirebaseFirestoreException?
-            ) {
+            override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
                 if (error != null){
                     Log.e("Firestore Error", error.message.toString())
                     return
                 }
                 for (dc: DocumentChange in value?.documentChanges!!){
-                    if(dc.type == DocumentChange.Type.ADDED)
+                    if (dc.type == DocumentChange.Type.ADDED)
                         produkArrayList.add(dc.document.toObject(Produk::class.java))
                 }
                 produkAdapter.notifyDataSetChanged()
@@ -127,7 +124,7 @@ class MainActivity : AppCompatActivity() {
         db = FirebaseFirestore.getInstance()
 
         val query = db.collection("produk")
-            .orderBy("nama_produk")
+            .orderBy("nama")
             .startAt(keyword)
             .get()
         query.addOnSuccessListener {
@@ -140,37 +137,38 @@ class MainActivity : AppCompatActivity() {
 
     private fun deleteProduk(produk: Produk, doc_id: String) {
         val builder = AlertDialog.Builder(this)
-        builder.setMessage("Apakah ${produk.nama_produk} ingin dihapus ?")
+        builder.setMessage("Apakah ${produk.nama} ingin dihapus?")
             .setCancelable(false)
             .setPositiveButton("Yes") { dialog, id ->
+
                 lifecycleScope.launch {
                     db.collection("produk")
                         .document(doc_id).delete()
-                    deleteFoto("img_produk/${produk.nama_produk}.jpg")
+
+                    deleteFoto("img_produk/${produk.nama}.jpg")
+
                     Toast.makeText(
                         applicationContext,
-                        produk.nama_produk.toString() + " is deleted",
+                        produk.nama.toString() + " is deleted",
                         Toast.LENGTH_LONG
                     ).show()
                     load_data()
                 }
             }
-            .setNegativeButton("No") { dialog, id ->
+            .setNegativeButton("No") {dialog, id ->
                 dialog.dismiss()
                 load_data()
             }
         val alert = builder.create()
         alert.show()
-
     }
 
     private fun swipeDelete() {
         ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0,
-            ItemTouchHelper.RIGHT){
-            override fun onMove(
-                recyclerView: RecyclerView,
-                viewHolder: RecyclerView.ViewHolder,
-                target: RecyclerView.ViewHolder
+            ItemTouchHelper.RIGHT) {
+            override fun onMove(recyclerView: RecyclerView,
+                                viewHolder: RecyclerView.ViewHolder,
+                                target: RecyclerView.ViewHolder
             ): Boolean {
                 return false
             }
@@ -180,10 +178,10 @@ class MainActivity : AppCompatActivity() {
                 lifecycleScope.launch {
                     val produk = produkArrayList[position]
                     val personQuery = db.collection("produk")
-                        .whereEqualTo("nama_produk", produk.nama_produk)
-                        .whereEqualTo("ukuran", produk.ukuran)
-                        .whereEqualTo("stok", produk.stok)
+                        .whereEqualTo("nama", produk.nama)
+                        .whereEqualTo("berat", produk.berat)
                         .whereEqualTo("harga", produk.harga)
+                        .whereEqualTo("stok", produk.stok)
                         .whereEqualTo("deskripsi", produk.deskripsi)
                         .get()
                         .await()
@@ -202,16 +200,16 @@ class MainActivity : AppCompatActivity() {
                                     ).show()
                                 }
                             }
-
                         }
                     }
                     else {
                         withContext(Dispatchers.Main) {
                             Toast.makeText(
                                 applicationContext,
-                                "Produk yang ingin di hapus tidak ditemukan",
+                                "Uset yang ingin di hapus tidak ditemukan",
                                 Toast.LENGTH_LONG
                             ).show()
+
                         }
                     }
                 }
@@ -231,4 +229,5 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
 }

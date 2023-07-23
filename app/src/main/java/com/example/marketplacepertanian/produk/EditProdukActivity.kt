@@ -27,17 +27,18 @@ import java.lang.Exception
 class EditProdukActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEditProdukBinding
     private val db = FirebaseFirestore.getInstance()
-
+    private var dataGambar: Bitmap? = null
     private val REQ_CAM = 101
     private lateinit var imgUri : Uri
-    private var dataGambar : Bitmap? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityEditProdukBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val curr_produk = setDefaultValue()
+        val (curr_produk) = setDefaultValue()
 
         binding.BtnEditProduk.setOnClickListener {
             val new_data_produk = newProduk()
@@ -57,34 +58,37 @@ class EditProdukActivity : AppCompatActivity() {
 
     fun setDefaultValue(): Array<Any> {
         val intent = intent
-        val nama_produk = intent.getStringExtra("nama_produk").toString()
-        val ukuran = intent.getStringExtra("ukuran").toString()
-        val stok = intent.getStringExtra("stok").toString()
+        val nama = intent.getStringExtra("nama").toString()
+        val berat = intent.getStringExtra("berat").toString()
         val harga = intent.getStringExtra("harga").toString()
+        val stok = intent.getStringExtra("stok").toString()
         val deskripsi = intent.getStringExtra("deskripsi").toString()
 
-        binding.TxtEditNamaProduk.setText(nama_produk)
-        binding.TxtEditUkuran.setText(ukuran)
-        binding.TxtEditStok.setText(stok)
+        binding.TxtEditNama.setText(nama)
+        binding.TxtEditBerat.setText(berat)
         binding.TxtEditHarga.setText(harga)
+        binding.TxtEditStok.setText(stok)
         binding.TxtEditDeskripsi.setText(deskripsi)
 
-        val curr_produk = Produk(nama_produk, ukuran, stok, harga, deskripsi)
+        val curr_produk = Produk(nama, berat, harga, stok, deskripsi)
         return arrayOf(curr_produk)
 
     }
 
     fun newProduk(): Map<String, Any> {
-        var nama_produk : String = binding.TxtEditNamaProduk.text.toString()
-        var ukuran : String = binding.TxtEditUkuran.text.toString()
-        var stok : String = binding.TxtEditStok.text.toString()
-        var harga : String = binding.TxtEditHarga.text.toString()
-        var deskripsi : String = binding.TxtEditDeskripsi.text.toString()
+        var nama: String = binding.TxtEditNama.text.toString()
+        var berat: String = binding.TxtEditBerat.text.toString()
+        var harga: String = binding.TxtEditHarga.text.toString()
+        var stok: String = binding.TxtEditStok.text.toString()
+        var deskripsi: String = binding.TxtEditDeskripsi.text.toString()
 
+        if (dataGambar != null) {
+            uploadPictFirebase(dataGambar!!, "${nama}")
+        }
 
         val produk = mutableMapOf<String, Any>()
-        produk["nama_produk"] = nama_produk
-        produk["ukuran"] = ukuran
+        produk["nama"] = nama
+        produk["berat"] = berat
         produk["stok"] = stok
         produk["harga"] = harga
         produk["deskripsi"] = deskripsi
@@ -95,17 +99,16 @@ class EditProdukActivity : AppCompatActivity() {
     private fun updateProduk(produk: Produk, newProdukMap: Map<String, Any>) =
         CoroutineScope(Dispatchers.IO).launch {
             val personQuery = db.collection("produk")
-                .whereEqualTo("nama_produk", produk.nama_produk)
-                .whereEqualTo("ukuran", produk.ukuran)
+                .whereEqualTo("nama", produk.nama)
+                .whereEqualTo("berat", produk.berat)
                 .whereEqualTo("stok", produk.stok)
                 .whereEqualTo("harga", produk.harga)
                 .whereEqualTo("deskripsi", produk.deskripsi)
                 .get()
                 .await()
 
-
-            if(personQuery.documents.isNotEmpty()) {
-                for(document in personQuery) {
+            if (personQuery.documents.isNotEmpty()) {
+                for (document in personQuery) {
                     try {
                         db.collection("produk").document(document.id).set(
                             newProdukMap,
@@ -122,21 +125,21 @@ class EditProdukActivity : AppCompatActivity() {
             else {
                 withContext(Dispatchers.Main) {
                     Toast.makeText(this@EditProdukActivity,
-                        "No produk matched the query.", Toast.LENGTH_LONG).show()
+                        "No persons matched the query.", Toast.LENGTH_LONG).show()
                 }
             }
         }
 
     fun showFoto() {
         val intent = intent
-        val nama_produk = intent.getStringExtra("nama_produk").toString()
+        val nama = intent.getStringExtra("nama"). toString()
 
-        val storageRef = FirebaseStorage.getInstance().reference.child("img_produk/${nama_produk}.jpg")
+        val storageRef = FirebaseStorage.getInstance().reference.child("img_produk/${nama}.jpg")
         val localfile = File.createTempFile("tempImage", "jpg")
         storageRef.getFile(localfile).addOnSuccessListener {
             val bitmap = BitmapFactory.decodeFile(localfile.absolutePath)
             binding.BtnImgProduk.setImageBitmap(bitmap)
-        }.addOnFailureListener{
+        }.addOnFailureListener {
             Log.e("foto ?", "gagal")
         }
     }
@@ -166,9 +169,9 @@ class EditProdukActivity : AppCompatActivity() {
 
         val img = baos.toByteArray()
         ref.putBytes(img)
-            .addOnCompleteListener{
+            .addOnCompleteListener {
                 if(it.isSuccessful) {
-                    ref.downloadUrl.addOnCompleteListener{Task ->
+                    ref.downloadUrl.addOnCompleteListener { Task ->
                         Task.result.let { Uri ->
                             imgUri = Uri
                             binding.BtnImgProduk.setImageBitmap(img_bitmap)

@@ -21,7 +21,8 @@ class AddProdukActivity : AppCompatActivity() {
 
     private val REQ_CAM = 101
     private lateinit var imgUri : Uri
-    private var dataGambar : Bitmap? = null
+    private var dataGambar: Bitmap? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -37,43 +38,22 @@ class AddProdukActivity : AppCompatActivity() {
         }
     }
 
-    fun addProduk() {
-        var nama_produk : String = binding.TxtAddNamaProduk.text.toString()
-        var ukuran : String = binding.TxtAddUkuran.text.toString()
-        var stok : String = binding.TxtAddStok.text.toString()
+    private fun addProduk() {
+        var nama : String = binding.TxtAddNama.text.toString()
+        var berat : String = binding.TxtAddBerat.text.toString()
         var harga : String = binding.TxtAddHarga.text.toString()
-        var deskripsi : String = binding.TxtAddDeskripsi.text.toString()
-
-//        var jk : String = ""
-//        if(binding.RdnEditJKL.isChecked) {
-//            jk = "Laki-laki"
-//        }
-//        else if(binding.RdnEditJKP.isChecked){
-//            jk = "Perempuan"
-//        }
-//
-//        var penyakit = ArrayList<String>()
-//        if (binding.ChkDiabetes.isChecked) {
-//            penyakit.add("Diabetes")
-//        }
-//        if(binding.ChkJantung.isChecked) {
-//            penyakit.add("Jantung")
-//        }
-//        if(binding.ChkAsma.isChecked) {
-//            penyakit.add("Asma")
-//        }
-//
-//        val penyakit_string = penyakit.joinToString("|")
+        var stok : String = binding.TxtAddStok.text.toString()
+        var deskripsi: String = binding.TxtAddDeskripsi.text.toString()
 
         val produk: MutableMap<String, Any> = HashMap()
-        produk["nama_produk"] = nama_produk
-        produk["ukuran"] = ukuran
-        produk["stok"] = stok
+        produk["nama"] = nama
+        produk["berat"] = berat
         produk["harga"] = harga
+        produk["stok"] = stok
         produk["deskripsi"] = deskripsi
 
         if (dataGambar != null) {
-            uploadPictFirebase(dataGambar!!, "${nama_produk}")
+            uploadPictFirebase(dataGambar!!, "${nama}")
 
             firestoreDatabase.collection("produk").add(produk)
                 .addOnSuccessListener {
@@ -103,16 +83,16 @@ class AddProdukActivity : AppCompatActivity() {
 
     private fun uploadPictFirebase(img_bitmap: Bitmap, file_name: String) {
         val baos = ByteArrayOutputStream()
-        val ref = FirebaseStorage.getInstance().reference.child("img_produk/${file_name}.jpg")
+        var ref = FirebaseStorage.getInstance().reference.child("img_produk/${file_name}.jpg")
         img_bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
 
         val img = baos.toByteArray()
         ref.putBytes(img)
-            .addOnCompleteListener {
-                if(it.isSuccessful) {
+            .addOnCompleteListener{
+                if (it.isSuccessful) {
                     ref.downloadUrl.addOnCompleteListener { Task ->
-                        Task.result.let { Uri ->
-                            imgUri = Uri
+                        Task.result.let { Url ->
+                            imgUri = Url
                             binding.BtnImgProduk.setImageBitmap(img_bitmap)
                         }
                     }

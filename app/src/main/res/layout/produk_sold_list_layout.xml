@@ -58,6 +58,15 @@
                 android:textColor="@color/lavender"
                 android:textSize="13dp"
                 android:textStyle="bold"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Kuantitas"
+                android:id="@+id/TVLKuantitas"
+                style="@style/h2"
+                android:textColor="@color/lavender"
+                android:textSize="13dp"
+                android:textStyle="bold"/>
 
             <TextView
                 android:layout_width="match_parent"

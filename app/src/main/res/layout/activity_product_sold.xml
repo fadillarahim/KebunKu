@@ -34,12 +34,12 @@
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/produk_list_view"
+            android:id="@+id/produk_sold_list_view"
             android:background="#F2F2F2"
             android:paddingTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:listitem="@layout/produk_list_layout" />
+            tools:listitem="@layout/produk_sold_list_layout" />
 
     </LinearLayout>
 
@@ -61,13 +61,5 @@
         android:layout_gravity="bottom"
         />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/bottomNavigation"
-        android:layout_alignParentBottom="true"
-        android:background="@android:color/white"
-        app:menu="@menu/menu_bottom"
-        app:elevation="0dp"/>
 
 </RelativeLayout>

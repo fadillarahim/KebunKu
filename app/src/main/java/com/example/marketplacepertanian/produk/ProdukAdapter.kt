@@ -19,13 +19,11 @@ class ProdukAdapter(private val produkList: ArrayList<Produk>) :
 
     private lateinit var activity: AppCompatActivity
     class ProdukViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val nama_produk: TextView = itemView.findViewById(R.id.TVLNamaProduk)
-        val ukuran_produk: TextView = itemView.findViewById(R.id.TVLUkuranProduk)
-        val stok_produk: TextView = itemView.findViewById(R.id.TVLStokProduk)
-        val harga_produk: TextView = itemView.findViewById(R.id.TVLHargaProduk)
-        val img_produk: ImageView = itemView.findViewById(R.id.IMLFotoProduk)
+        val nama: TextView = itemView.findViewById(R.id.TVLNama)
+        val stok: TextView = itemView.findViewById(R.id.TVLStok)
+        val harga: TextView = itemView.findViewById(R.id.TVLHarga)
+        val img_produk: ImageView = itemView.findViewById(R.id.IMLGambarProduk)
     }
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProdukViewHolder {
         val itemView = LayoutInflater.from(parent.context)
@@ -35,34 +33,32 @@ class ProdukAdapter(private val produkList: ArrayList<Produk>) :
 
     override fun onBindViewHolder(holder: ProdukViewHolder, position: Int) {
         val produk: Produk = produkList[position]
-        holder.nama_produk.text = produk.nama_produk
-        holder.ukuran_produk.text = produk.ukuran
-        holder.stok_produk.text = produk.stok
-        holder.harga_produk.text = produk.harga
+        holder.nama.text = produk.nama
+        holder.stok.text = produk.stok
+        holder.harga.text = produk.harga
 
         holder.itemView.setOnClickListener {
             activity = it.context as AppCompatActivity
-            activity.startActivity(Intent(activity, EditProdukActivity::class.java).apply{
-                putExtra("nama_produk", produk.nama_produk.toString())
-                putExtra("ukuran_produk", produk.ukuran.toString())
-                putExtra("stok_produk", produk.stok.toString())
-                putExtra("harga_produk", produk.harga.toString())
-
-
+            activity.startActivity(Intent(activity, EditProdukActivity::class.java).apply {
+                putExtra("nama", produk.nama.toString())
+                putExtra("berat", produk.berat.toString())
+                putExtra("stok", produk.stok.toString())
+                putExtra("harga", produk.harga.toString())
+                putExtra("deskripsi", produk.deskripsi.toString())
             })
         }
 
-        val storageRef = FirebaseStorage.getInstance().reference.child("img_produk/${produk.nama_produk}.jpg")
-        val localfile = File.createTempFile("tempImage", "jpg")
-        storageRef.getFile(localfile).addOnSuccessListener {
-            val bitmap = BitmapFactory.decodeFile(localfile.absolutePath)
+        val storageRef = FirebaseStorage.getInstance().reference.child("img_produk/${produk.nama}.jpg")
+        val localFile = File.createTempFile("tempImage", "jpg")
+        storageRef.getFile(localFile).addOnSuccessListener {
+            val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
             holder.img_produk.setImageBitmap(bitmap)
-        }.addOnFailureListener{
+        }.addOnFailureListener {
             Log.e("foto ?", "gagal")
         }
     }
 
     override fun getItemCount(): Int {
-        return  produkList.size
+        return produkList.size
     }
 }

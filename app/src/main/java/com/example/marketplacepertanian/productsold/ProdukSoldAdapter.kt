@@ -23,7 +23,8 @@ class ProdukSoldAdapter (private val produksoldList: ArrayList<ProdukSold>) :
     private lateinit var activity: AppCompatActivity
     class ProdukSoldViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nama_produk: TextView = itemView.findViewById(R.id.TVLNamaProduk)
-        val ukuran_produk: TextView = itemView.findViewById(R.id.TVLUkuranProduk)
+        val berat_produk: TextView = itemView.findViewById(R.id.TVLUkuranProduk)
+        val kuantitas_produk: TextView = itemView.findViewById(R.id.TVLKuantitas)
         val total_harga: TextView = itemView.findViewById(R.id.TVLTotalHarga)
         val img_produk: ImageView = itemView.findViewById(R.id.IMLFotoProduk)
     }
@@ -38,9 +39,20 @@ class ProdukSoldAdapter (private val produksoldList: ArrayList<ProdukSold>) :
     override fun onBindViewHolder(holder: ProdukSoldViewHolder, position: Int) {
         val produk_sold: ProdukSold = produksoldList[position]
         holder.nama_produk.text = produk_sold.nama_produk
-        holder.ukuran_produk.text = produk_sold.ukuran
+        holder.berat_produk.text = produk_sold.berat
         holder.total_harga.text = produk_sold.total_harga
+        holder.kuantitas_produk.text = produk_sold.quantity
 
+        holder.itemView.setOnClickListener {
+            activity = it.context as AppCompatActivity
+            activity.startActivity(Intent(activity, EditProductSoldActivity::class.java).apply {
+                putExtra("nama", produk_sold.nama_produk.toString())
+                putExtra("berat", produk_sold.berat.toString())
+                putExtra("total_harga", produk_sold.total_harga.toString())
+                putExtra("quantity", produk_sold.quantity.toString())
+
+            })
+        }
 
         val storageRef = FirebaseStorage.getInstance().reference.child("img_produk/${produk_sold.nama_produk}.jpg")
         val localfile = File.createTempFile("tempImage", "jpg")

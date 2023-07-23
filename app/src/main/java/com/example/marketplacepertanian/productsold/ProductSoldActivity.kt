@@ -46,7 +46,7 @@ class ProductSoldActivity : AppCompatActivity() {
         binding = ActivityProductSoldBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        produkSoldRecyclerView = binding.produkListView
+        produkSoldRecyclerView = binding.produkSoldListView
         produkSoldRecyclerView.layoutManager = LinearLayoutManager(this)
         produkSoldRecyclerView.setHasFixedSize(true)
 
@@ -78,27 +78,7 @@ class ProductSoldActivity : AppCompatActivity() {
             override fun afterTextChanged(p0: Editable?) {}
         })
 
-        binding.bottomNavigation.setOnItemSelectedListener {
-            when(it.itemId) {
-                R.id.nav_bottom_home -> {
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                }
-                R.id.nav_bottom_produkjual -> {
-                    val intent = Intent(this, ProductSoldActivity::class.java)
-                    startActivity(intent)
-                }
-                R.id.nav_bottom_setting -> {
-                    val intent = Intent(this, SettingsActivity::class.java)
-                    startActivity(intent)
-                }
-                R.id.nav_bottom_chat -> {
-                    val intent = Intent(this, ChatActivity::class.java)
-                    startActivity(intent)
-                }
-            }
-            true
-        }
+
     }
 
     private fun load_data() {
@@ -183,7 +163,7 @@ class ProductSoldActivity : AppCompatActivity() {
                     val produk_sold = produkSoldArrayList[position]
                     val personQuery = db.collection("produk_sold")
                         .whereEqualTo("nama_produk", produk_sold.nama_produk)
-                        .whereEqualTo("ukuran", produk_sold.ukuran)
+                        .whereEqualTo("berat", produk_sold.berat)
                         .whereEqualTo("harga_total", produk_sold.total_harga)
                         .whereEqualTo("kuantitas", produk_sold.quantity)
                         .get()
