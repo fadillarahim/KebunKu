@@ -34,7 +34,7 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
             } else {
-                Toast.makeText(this, "Tidak Boleh Kosong", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Email dan Password Tidak Boleh Kosong", Toast.LENGTH_SHORT).show()
             }
         }
 

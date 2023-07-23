@@ -34,10 +34,10 @@ class SignUpActivity : AppCompatActivity() {
                         }
                     }
                 } else {
-                    Toast.makeText(this, "Password does not matched", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Konfirmasi Password Tidak Sama", Toast.LENGTH_SHORT).show()
                 }
             } else {
-                Toast.makeText(this, "Fields cannot be empty", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Form Tidak Boleh Kosong", Toast.LENGTH_SHORT).show()
             }
         }
         binding.loginRedirectText.setOnClickListener {
