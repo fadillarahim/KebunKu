@@ -18,6 +18,8 @@ Tools yang digunakan dalam pembuatan project ini adalah menggunakan Android Stud
 
 ## User Guide
 ![Your paragraph text](https://github.com/fadillarahim/KebunKu/assets/96510275/3fdb0896-581a-4dcc-be86-e44cdd4a60c7)
+![Your paragraph text](https://github.com/fadillarahim/KebunKu/assets/96510275/1427eabe-0988-4241-9bb2-e3b7a1fd220f)
+
 
 
 
