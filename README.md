@@ -17,6 +17,7 @@ Aplikasi yang dibangun pada repository ini diperuntukkan dari sisi penggunaan ol
 Tools yang digunakan dalam pembuatan project ini adalah menggunakan Android Studio, dengan bahasa pemrograman Kotlin, Firebase Firestore, dan Firebase Database.
 
 ## User Guide
+![Your paragraph text](https://github.com/fadillarahim/KebunKu/assets/96510275/3fdb0896-581a-4dcc-be86-e44cdd4a60c7)
 
 
 
